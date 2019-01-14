@@ -103,7 +103,7 @@ class AuthModule
         $data = mysqli_fetch_array(mysqli_query($this->DB,"SELECT {$this->config['database']['settingsValueName']} FROM {$this->config['database']['settingsTableName']} WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_time'"), MYSQLI_ASSOC) or die(mysqli_error($this->DB));
         $this->lastUpdateTime = (int)$data[$this->config['database']['settingsValueName']];
         if (time() - $this->lastUpdateTime >= 3000) {
-            mysqli_query($this->DB,"UPDATE {$this->config['database']['settingsTableName']} SET {$this->config['database']['settingsValueName']}='{$this->app_code}' WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_code'") or die(mysqli_error($this->DB));
+            mysqli_query($this->DB,"UPDATE {$this->config['database']['settingsTableName']} SET {$this->config['database']['settingsValueName']}='{$this->authCode}' WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_code'") or die(mysqli_error($this->DB));
             mysqli_query($this->DB,"UPDATE {$this->config['database']['settingsTableName']} SET {$this->config['database']['settingsValueName']}='{$this->lastUpdateTime}' WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_time'") or die(mysqli_error($this->DB));
         }
     }
