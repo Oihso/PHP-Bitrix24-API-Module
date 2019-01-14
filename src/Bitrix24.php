@@ -57,7 +57,7 @@ class Bitrix24
     /**
      * @param string $method For available methods see documentation: https://training.bitrix24.com/rest_help/rest_sum/index.php
      * @param array $data For available parameters see documentation: https://training.bitrix24.com/rest_help/rest_sum/index.php
-     * @return mixed Data array from Bitrix24 REST API
+     * @return mixed Data array from Bitrix24 REST API / null if nothing received
      */
     public function callMethod($method, $data = array())
     {
@@ -65,7 +65,10 @@ class Bitrix24
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($c, CURLOPT_POST, true);
         curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
-        $response = curl_exec($c);
-        return json_decode($response, true)['result'];
+        $response = json_decode(curl_exec($c), true);
+        if (isset($response['result']))
+            return $response['result'];
+        else
+            return null;
     }
 }
