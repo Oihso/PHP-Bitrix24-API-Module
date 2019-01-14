@@ -77,7 +77,6 @@ class AuthModule
 
         curl_setopt($ch, CURLOPT_URL, $l);
         $res = curl_exec($ch);
-
         curl_setopt($ch, CURLOPT_URL, 'https://' . $this->config['companyDomain'] . '/oauth/authorize/?response_type=code&client_id=' . $this->config['auth']['clientId']);
         $res = curl_exec($ch);
         $l = '';
@@ -102,7 +101,7 @@ class AuthModule
     private function setAppCode()
     {
         $data = mysqli_fetch_array(mysqli_query($this->DB,"SELECT {$this->config['database']['settingsValueName']} FROM {$this->config['database']['settingsTableName']} WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_time'"), MYSQLI_ASSOC) or die(mysqli_error($this->DB));
-        $this->lastUpdateTime = $data[$this->config['database']['settingsValueName']];
+        $this->lastUpdateTime = (int)$data[$this->config['database']['settingsValueName']];
         if (time() - $this->lastUpdateTime >= 3000) {
             mysqli_query($this->DB,"UPDATE {$this->config['database']['settingsTableName']} SET {$this->config['database']['settingsValueName']}='{$this->app_code}' WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_code'") or die(mysqli_error($this->DB));
             mysqli_query($this->DB,"UPDATE {$this->config['database']['settingsTableName']} SET {$this->config['database']['settingsValueName']}='{$this->lastUpdateTime}' WHERE {$this->config['database']['settingsKeyName']}='php_bitrix24_auth_time'") or die(mysqli_error($this->DB));

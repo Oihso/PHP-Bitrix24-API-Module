@@ -19,18 +19,18 @@ $Bitrix24 = new Bitrix24(
 
         //Database config
         'database' => array(
-            'settingsTableName' => 'config',
-            'settingsKeyName' => 'key',
-            'settingsValueName' => 'value'
+            'settingsTableName' => 'config', //MySQL Name for table, used for settings storage
+			'settingsKeyName' => 'key',	//MySQL Key name
+            'settingsValueName' => 'value' //MySQL Value name
         )
     ),
     array(
-        '127.0.0.1',
-        'user',
-        '1234',
-        'db',
-        3306
-    ) //Database connection
+        '127.0.0.1', //MySQL Host
+        'user',	//MySQL Username
+        '1234',	//MySQL Password
+        'db', //MySQL Database
+        3306 //MySQL Port
+    )
 );
 
 //Gets deal with DEAL_ID = '1234'

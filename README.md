@@ -43,19 +43,27 @@ $Bitrix24 = new Bitrix24(
         )
     ),
     array(
-        '127.0.0.1',
-        'user',
-        '1234',
-        'db',
-        3306
+        '127.0.0.1', //MySQL Host
+        'user',	//MySQL Username
+        '1234',	//MySQL Password
+        'db', //MySQL Database
+        3306 //MySQL Port
     ) //Database connection
 );
 
 //Gets deal with DEAL_ID = '1234'
 $dealData = $Bitrix24->callMethod("crm.deal.get", array('id'=>'1234'));
 ```
+## What is `settingsKeyName` and `settingsValueName` values?
+PHP Bitrix24 API Module uses standard key-value pair table to store data.
+Here is an [example](http://prntscr.com/m77zsn)<br/>
+If you have another names for `key-value` pairs (for example: option `as key` - config `as value`), you need to specify this names in config. Otherwise the library will not work.
+
 ## Installation
-`composer require oihso/bitrix24-api-module`
+1. Install library in your project: `composer require oihso/bitrix24-api-module`
+2. Create new table (or use an existing one) to store settings. The table must be key-value type. Key and value must be `TEXT` fields
+3. Add the row "php_bitrix24_auth_time" = "0" to the table
+4. Add the row "php_bitrix24_auth_code" = "code" to the table
 
 ## How to configure your Bitrix24
 1. Go to `Applications -> Add application -> My account only -> Add` and create app with `Only API` checkmark. Also you need to select all needed scopes
