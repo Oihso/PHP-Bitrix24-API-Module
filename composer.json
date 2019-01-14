@@ -1,0 +1,24 @@
+{
+    "name": "oihso/php-bitrix24-api-module",
+    "description": "This library allows you to use Bitrix24 REST API. An authentication module is included in this library.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Oihso",
+            "email": "ia@rwaps.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+		"php": ">=7.0.0",
+		"ext-curl": "*",
+		"ext-json": "*",
+		"ext-mysqli": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"Bitrix24API": "src/"
+		}
+	}
+}
