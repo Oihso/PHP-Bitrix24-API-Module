@@ -17,8 +17,8 @@
 		"ext-mysqli": "*"
 	},
 	"autoload": {
-		"psr-0": {
-			"Bitrix24API": "src/"
+		"psr-4": {
+			"Bitrix24API\\": "src/"
 		}
 	}
 }
