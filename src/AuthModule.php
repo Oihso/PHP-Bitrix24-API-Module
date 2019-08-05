@@ -54,7 +54,7 @@ class AuthModule
         $post = http_build_query([
             'AUTH_FORM' => 'Y',
             'TYPE' => 'AUTH',
-            'backurl' => $math[1],
+            'backurl' => array_key_exists(1, $math) ? $math[1] : '',
             'USER_LOGIN' => $this->config['auth']['login'],
             'USER_PASSWORD' => $this->config['auth']['password'],
             'USER_REMEMBER' => 'Y'
